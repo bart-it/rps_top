@@ -16,9 +16,11 @@ const playRound = (computer, player) => {
             ||(computer + player === 'paperscissors')
             ||(computer + player === 'scissorsrock')
         ){
+            txt = 'Rock, Paper, Scissors?'
             playerScore++;
             return `${player} beats ${computer}. You win!`
         } else {
+            txt = 'Rock, Paper, Scissors?'
             computerScore++;
             return `${computer} beats ${player}. You lose!`;
          }
@@ -33,5 +35,20 @@ let txt = 'Rock, Paper, Scissors?'
 let playerScore = 0;
 let computerScore = 0;
 let count = 0;
-console.log(playRound(computerPlay(), playerPlay(txt)));
-console.log(`${playerScore} : ${computerScore}`)
+
+const game = function(){
+    if (count < 5){
+        playRound(computerPlay(), playerPlay(txt));
+        console.log(`${playerScore} : ${computerScore}`);
+        count++;
+        game();
+    } else{
+        if(playerScore > computerScore){
+            console.log(`player:${playerScore} against computer:${computerScore}\nYou win!`)
+        } else {
+            console.log(`player:${playerScore} against computer:${computerScore}\nYou lose! --- Try again!`)
+        }
+    }
+}
+
+game();
