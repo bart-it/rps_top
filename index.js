@@ -6,11 +6,13 @@ const playerPlay = txt => prompt(txt).toLowerCase();
 
 const computerPlay = () => rps[rand(rps.length)];
 
+const play = () => playRound(computerPlay(), playerPlay(txt));
+
 const playRound = (computer, player) => {
     if(rps.includes(player)){
         if(computer === player) {
             txt = 'Tie, choose again (Rock, Paper, Scissors?).'
-            return playRound(computerPlay(), playerPlay(txt));
+            return play();
         } else if (
             (computer + player === 'rockpaper')
             ||(computer + player === 'paperscissors')
@@ -26,7 +28,7 @@ const playRound = (computer, player) => {
          }
     } else {
         txt = 'Not a correct format, choose between rock, paper or scissors.';
-        return playRound(computerPlay(), playerPlay(txt));
+        return play();
     }
    
 };
@@ -38,7 +40,7 @@ let count = 0;
 
 const game = function(){
     if (count < 5){
-        playRound(computerPlay(), playerPlay(txt));
+        play();
         console.log(`${playerScore} : ${computerScore}`);
         count++;
         game();
@@ -52,3 +54,4 @@ const game = function(){
 }
 
 game();
+
