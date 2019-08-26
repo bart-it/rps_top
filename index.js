@@ -8,16 +8,24 @@ const computerPlay = () => rps[rand(rps.length)];
 
 const playRound = (computer, player) => {
    if(computer === player) {
-       return 'Tie';
+       txt = 'Tie, choose again (Rock, Paper, Scissors?).'
+       return playRound(computerPlay(), playerPlay(txt));
    } else if (
        (computer + player === 'rockpaper')
        ||(computer + player === 'paperscissors')
        ||(computer + player === 'scissorsrock')
    ){
+       playerScore++;
        return `${player} beats ${computer}. You win!`
-   } else return `${computer} beats ${player}. You lose!`;
+   } else {
+       computerScore++;
+       return `${computer} beats ${player}. You lose!`;
+    }
 };
 
 let txt = 'Rock, Paper, Scissors?'
-
+let playerScore = 0;
+let computerScore = 0;
+let count = 0;
 console.log(playRound(computerPlay(), playerPlay(txt)));
+console.log(`${playerScore} : ${computerScore}`)
